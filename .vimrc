@@ -11,6 +11,7 @@ Plugin 'https://github.com/octol/vim-cpp-enhanced-highlight.git'
 Plugin 'https://github.com/wincent/command-t.git'
 Plugin 'https://github.com/scrooloose/nerdtree.git'
 Plugin 'https://github.com/majutsushi/tagbar.git'
+Plugin 'https://github.com/jlanzarotta/bufexplorer.git'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -56,14 +57,14 @@ let g:DoxygenToolkit_authorName="Victor Krasnoshchok <militant.daos@gmail.com>"
 
 " Enhanced keyboard mappings
 "
-" in normal mode F2 will save the file
-nmap <F2> :w<CR>
-" in insert mode F2 will exit insert, save, enters insert again
-imap <F2> <ESC>:w<CR>i
+nmap <F2> :ToggleBufExplorer<CR>
 " NerdTree
 nmap <F3> :NERDTreeToggle<CR>
+
+" currently not used
 " switch between header/source with F4
-map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+" map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+
 " recreate tags file with F5
 map <F5> :!ctags -R –c++-kinds=+p –fields=+iaS –extra=+q .<CR>
 " create doxygen comment
@@ -76,19 +77,3 @@ map <S-F7> :make clean all<CR>
 nmap <F8> :TagbarToggle<CR>
 " goto definition with F12
 map <F12> <C-]>
-" in diff mode we use the spell check keys for merging
-if &diff
-  ” diff settings
-  map <M-Down> ]c
-  map <M-Up> [c
-  map <M-Left> do
-  map <M-Right> dp
-  map <F9> :new<CR>:read !svn diff<CR>:set syntax=diff buftype=nofile<CR>gg
-else
-  " spell settings
-  :setlocal spell spelllang=en
-  " set the spellfile - folders must exist
-  set spellfile=~/.vim/spellfile.add
-  map <M-Down> ]s
-  map <M-Up> [s
-endif

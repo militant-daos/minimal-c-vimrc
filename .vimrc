@@ -12,6 +12,9 @@ Plugin 'https://github.com/wincent/command-t.git'
 Plugin 'https://github.com/scrooloose/nerdtree.git'
 Plugin 'https://github.com/majutsushi/tagbar.git'
 Plugin 'https://github.com/jlanzarotta/bufexplorer.git'
+Plugin 'https://github.com/vim-scripts/DoxygenToolkit.vim.git'
+Plugin 'https://github.com/godlygeek/tabular.git'
+Plugin 'https://github.com/plasticboy/vim-markdown.git'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -77,3 +80,6 @@ map <S-F7> :make clean all<CR>
 nmap <F8> :TagbarToggle<CR>
 " goto definition with F12
 map <F12> <C-]>
+
+set hlsearch
+set incsearch

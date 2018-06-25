@@ -8,11 +8,9 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'https://github.com/WolfgangMehner/c-support.git'
 Plugin 'https://github.com/octol/vim-cpp-enhanced-highlight.git'
-Plugin 'https://github.com/wincent/command-t.git'
 Plugin 'https://github.com/scrooloose/nerdtree.git'
 Plugin 'https://github.com/majutsushi/tagbar.git'
 Plugin 'https://github.com/jlanzarotta/bufexplorer.git'
-Plugin 'https://github.com/vim-scripts/DoxygenToolkit.vim.git'
 Plugin 'https://github.com/godlygeek/tabular.git'
 Plugin 'https://github.com/plasticboy/vim-markdown.git'
 
@@ -47,13 +45,7 @@ set showmatch
 " intelligent comments
 set comments=sl:/*,mb:\ *,elx:\ */
 
-" Install OmniCppComplete like described on http://vim.wikia.com/wiki/C++_code_completion
-" This offers intelligent C++ completion when typing ‘.’ ‘->’ or <C-o>
-" Load standard tag files
-set tags+=~/.vim/tags/cpp
-set tags+=~/.vim/tags/gl
-set tags+=~/.vim/tags/sdl
-set tags+=~/.vim/tags/qt4
+set tags=tags;/
 
 " Install DoxygenToolkit from http://www.vim.org/scripts/script.php?script_id=987
 let g:DoxygenToolkit_authorName="Victor Krasnoshchok <militant.daos@gmail.com>"

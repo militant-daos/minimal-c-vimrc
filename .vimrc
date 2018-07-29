@@ -1,5 +1,6 @@
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
@@ -18,41 +19,70 @@ Plugin 'https://github.com/plasticboy/vim-markdown.git'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+" ----------------------------------------------------------------------------
+" Text editing settings
+"
+
 " set UTF-8 encoding
 set enc=utf-8
 set fenc=utf-8
 set termencoding=utf-8
+
 " disable vi compatibility (emulation of old bugs)
 set nocompatible
+
 " use indentation of previous line
 set autoindent
+
 " use intelligent indentation for C
 set smartindent
-" configure tabwidth and insert spaces instead of tabs
-set tabstop=4        " tab width is 4 spaces
-set shiftwidth=4     " indent also with 4 spaces
-set expandtab        " expand tabs to spaces
-" wrap lines at 120 chars. 80 is somewaht antiquated with nowadays displays.
-set textwidth=120
-" turn syntax highlighting on
-set t_Co=256
-syntax on
-" colorscheme wombat256
-" turn line numbers on
-set number
-" highlight matching braces
-set showmatch
-" intelligent comments
-set comments=sl:/*,mb:\ *,elx:\ */
 
-set tags=tags;/
+" Currently - not used. Linux Kernel codeing standard
+" defines another settings for indentation.
+" configure tabwidth and insert spaces instead of tabs
+" set tabstop=4        " tab width is 4 spaces
+" set shiftwidth=4     " indent also with 4 spaces
+" set expandtab        " expand tabs to spaces
 
 " Set indentation according to the Kernel coding standard
 set noet ci pi sts=0 sw=8 ts=8
 
+" Currently - not used.
+" wrap lines at 120 chars. 80 is somewaht antiquated with nowadays displays.
+" set textwidth=120
+
+" From Linux kernel coding standard.
+set textwidth=80
+
+" turn syntax highlighting on
+set t_Co=256
+syntax on
+
+" colorscheme wombat256
+" turn line numbers on
+set number
+
+" highlight matching braces
+set showmatch
+
+" intelligent comments
+set comments=sl:/*,mb:\ *,elx:\ */
+
+" Search settings
+set hlsearch
+set incsearch
+
+" ----------------------------------------------------------------------------
+" External tools settings
+"
+
+" Default tags location for Universal-CTags
+set tags=tags;/
+
 " Install DoxygenToolkit from http://www.vim.org/scripts/script.php?script_id=987
 let g:DoxygenToolkit_authorName="Victor Krasnoshchok <militant.daos@gmail.com>"
 
+" ----------------------------------------------------------------------------
 " Enhanced keyboard mappings
 "
 nmap <F2> :ToggleBufExplorer<CR>
@@ -75,6 +105,3 @@ map <S-F7> :make clean all<CR>
 nmap <F8> :TagbarToggle<CR>
 " goto definition with F12
 map <F12> <C-]>
-
-set hlsearch
-set incsearch

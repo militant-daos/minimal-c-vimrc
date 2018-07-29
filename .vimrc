@@ -47,6 +47,9 @@ set comments=sl:/*,mb:\ *,elx:\ */
 
 set tags=tags;/
 
+" Set indentation according to the Kernel coding standard
+set noet ci pi sts=0 sw=8 ts=8
+
 " Install DoxygenToolkit from http://www.vim.org/scripts/script.php?script_id=987
 let g:DoxygenToolkit_authorName="Victor Krasnoshchok <militant.daos@gmail.com>"
 
@@ -61,7 +64,7 @@ nmap <F3> :NERDTreeToggle<CR>
 " map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
 " recreate tags file with F5
-map <F5> :!ctags -R –c++-kinds=+p –fields=+iaS –extra=+q .<CR>
+map <F5> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 " create doxygen comment
 map <F6> :Dox<CR>
 " build using makeprg with <F7>

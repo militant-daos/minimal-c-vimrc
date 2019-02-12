@@ -79,8 +79,8 @@ set showmatch
 set comments=sl:/*,mb:\ *,elx:\ */
 
 " delete without yanking
-nnoremap d "_d
-vnoremap d "_d
+" nnoremap d "_d
+" vnoremap d "_d
 
 " replace currently selected text with default register
 " without yanking it
@@ -129,7 +129,27 @@ let g:deoplete#enable_at_startup = 1
 " Default tags location for Universal-CTags
 " set tags=tags;/
 
-let g:DoxygenToolkit_authorName="Victor Krasnoshchok <militant.daos@gmail.com>"
+let g:DoxygenToolkit_authorName="Victor Krasnoshchok"
+
+" ----------------------------------------------------------------------------
+" Sidekicks & crutches with thread tape
+
+" The Silver Searcher
+" How-to install: sudo apt-get install silversearcher-ag
+
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " ----------------------------------------------------------------------------
 " Enhanced keyboard mappings

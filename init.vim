@@ -15,13 +15,8 @@ Plug 'https://github.com/vim-scripts/DoxygenToolkit.vim.git'
 Plug 'https://github.com/ntpeters/vim-better-whitespace.git'
 Plug 'https://github.com/jsfaint/gen_tags.vim'
 
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+" Completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " All of your Plugins must be added before the following line
 
@@ -32,7 +27,6 @@ filetype plugin indent on    " required
 " ----------------------------------------------------------------------------
 " Text editing settings
 "
-
 
 " set UTF-8 encoding
 set enc=utf-8
@@ -119,9 +113,8 @@ nnoremap [w :PrevTrailingWhitespace<CR>
 set hlsearch
 set incsearch
 
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-
+" Coc
+let g:coc_node_path='/usr/bin/node'
 
 " ----------------------------------------------------------------------------
 " External tools settings
@@ -167,13 +160,13 @@ map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 map <F5> :GenCtags<CR>:GenGTAGS<CR>
 
 " create doxygen comment
-map <F6> :Dox<CR>
+" map <F6> :Dox<CR>
 
 " build using makeprg with <F7>
-map <F7> :make<CR>
+" map <F7> :make<CR>
 
 " build using makeprg with <S-F7>
-map <S-F7> :make clean all<CR>
+" map <S-F7> :make clean all<CR>
 
 " Tags
 nmap <F8> :TagbarToggle<CR>
@@ -186,3 +179,4 @@ map <C-s> :mksession! ~/vim_session <CR>
 
 " restore the last session
 map <C-r> :source ~/vim_session <CR>
+

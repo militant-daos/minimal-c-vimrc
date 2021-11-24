@@ -13,7 +13,7 @@ Minimal init.vim for C/C++ development
      - make && make install
 6. Install NodeJS, NPM and Yarn: sudo apt-get install nodejs npm yarnpkg
 7. Install clangd (and clang if needed): sudo apt-get install clangd 
-8. Launch nvim and do :PluginInstall
+8. Launch nvim and do :PlugInstall
 9. Install coc-clangd: :CocInstall coc-clangd
 10. Install bear: sudo apt-get install bear (or compile from the sources: https://github.com/rizsotto/Bear)
 11. Open any c/c++ file and launch coc-clangd install in case clangd is not found in $PATH: open any c/c++ file and :CocCommand clangd.install

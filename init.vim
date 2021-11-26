@@ -14,6 +14,7 @@ Plug 'https://github.com/plasticboy/vim-markdown.git'
 Plug 'https://github.com/vim-scripts/DoxygenToolkit.vim.git'
 Plug 'https://github.com/ntpeters/vim-better-whitespace.git'
 Plug 'https://github.com/jsfaint/gen_tags.vim'
+Plug 'https://github.com/wincent/command-t'
 
 " Completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}

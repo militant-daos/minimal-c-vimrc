@@ -29,6 +29,9 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+" C++ highlighting
+Plug 'bfrg/vim-cpp-modern'
+
 " All of your Plugins must be added before the following line
 
 call plug#end()            " required
@@ -129,6 +132,7 @@ let g:coc_node_path='/usr/bin/node'
 " Tree-sitter
 let g:CommandTPreferredImplementation='lua'
 nnoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 
 " Airline
 set laststatus=2
@@ -144,6 +148,14 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#show_tabs = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline_powerline_fonts = 1
+
+" C++ highlighting settings
+let g:cpp_attributes_highlight = 1
+" Highlight struct/class member variables (affects both C and C++ files)
+let g:cpp_member_highlight = 1
+" Put all standard C and C++ keywords under Vim's highlight group 'Statement'
+" (affects both C and C++ files)
+let g:cpp_simple_highlight = 1
 
 " ----------------------------------------------------------------------------
 " External tools settings
@@ -202,3 +214,4 @@ map <C-r> :source ~/vim_session <CR>
 
 " Command-T call
 map <bslash>t :CommandT<CR>
+

@@ -1,23 +1,33 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
+Plug 'junegunn/vim-github-dashboard'
+Plug 'vim-scripts/wombat256.vim'
+
+" Files navigation
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'jlanzarotta/bufexplorer'
+
+" Tags
+Plug 'majutsushi/tagbar', { 'on':  'TagbarToggle' }
+Plug 'ludovicchabant/vim-gutentags'
+
+" Markdown and decorations
+Plug 'plasticboy/vim-markdown'
+Plug 'vim-scripts/DoxygenToolkit.vim'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'godlygeek/tabular'
 Plug 'junegunn/vim-easy-align'
-Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 
-Plug 'https://github.com/vim-scripts/wombat256.vim'
-Plug 'https://github.com/WolfgangMehner/c-support.git'
-Plug 'https://github.com/octol/vim-cpp-enhanced-highlight.git'
-Plug 'https://github.com/scrooloose/nerdtree.git', { 'on':  'NERDTreeToggle' }
-Plug 'https://github.com/majutsushi/tagbar.git', { 'on':  'TagbarToggle' }
-Plug 'https://github.com/jlanzarotta/bufexplorer.git'
-Plug 'https://github.com/godlygeek/tabular.git'
-Plug 'https://github.com/plasticboy/vim-markdown.git'
-Plug 'https://github.com/vim-scripts/DoxygenToolkit.vim.git'
-Plug 'https://github.com/ntpeters/vim-better-whitespace.git'
-Plug 'https://github.com/jsfaint/gen_tags.vim'
-Plug 'https://github.com/wincent/command-t'
+" Search
+Plug 'wincent/command-t'
 
-" Completion
+" Completion & highlighting
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" Misc
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " All of your Plugins must be added before the following line
 
@@ -28,7 +38,6 @@ filetype plugin indent on    " required
 " ----------------------------------------------------------------------------
 " Text editing settings
 "
-
 " set UTF-8 encoding
 set enc=utf-8
 set fenc=utf-8
@@ -111,11 +120,30 @@ nnoremap ]w :NextTrailingWhitespace<CR>
 nnoremap [w :PrevTrailingWhitespace<CR>
 
 " Search settings
-set hlsearch
-set incsearch
+set hlsearch  " Higlight matched
+set incsearch " Incremental search
 
 " Coc
 let g:coc_node_path='/usr/bin/node'
+
+" Tree-sitter
+let g:CommandTPreferredImplementation='lua'
+nnoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+
+" Airline
+set laststatus=2
+
+" Gutentags
+set statusline+=%{gutentags#statusline()}
+let g:gutentags_cache_dir = '~/.tmp/tags'
+
+" vim-airline Settings
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#show_tabs = 1
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline_powerline_fonts = 1
 
 " ----------------------------------------------------------------------------
 " External tools settings
@@ -123,7 +151,7 @@ let g:coc_node_path='/usr/bin/node'
 " Default tags location for Universal-CTags
 " set tags=tags;/
 
-let g:DoxygenToolkit_authorName="Victor Krasnoshchok"
+" let g:DoxygenToolkit_authorName="Victor Krasnoshchok"
 
 " ----------------------------------------------------------------------------
 " Sidekicks & crutches with thread tape
@@ -158,16 +186,7 @@ nmap <F3> :NERDTreeToggle<CR>
 map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
 " recreate tags file with F5
-map <F5> :GenCtags<CR>:GenGTAGS<CR>
-
-" create doxygen comment
-" map <F6> :Dox<CR>
-
-" build using makeprg with <F7>
-" map <F7> :make<CR>
-
-" build using makeprg with <S-F7>
-" map <S-F7> :make clean all<CR>
+map <F5> :GutentagsUpdate<CR>
 
 " Tags
 nmap <F8> :TagbarToggle<CR>
@@ -181,3 +200,5 @@ map <C-s> :mksession! ~/vim_session <CR>
 " restore the last session
 map <C-r> :source ~/vim_session <CR>
 
+" Command-T call
+map <bslash>t :CommandT<CR>

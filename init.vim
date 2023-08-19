@@ -18,10 +18,14 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'godlygeek/tabular'
 Plug 'junegunn/vim-easy-align'
 
+" Comment/Uncomment tool
+Plug 'scrooloose/nerdcommenter'
+
 " Search
 Plug 'wincent/command-t'
 
 " Completion & highlighting
+Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
@@ -29,8 +33,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" C++ highlighting
-Plug 'bfrg/vim-cpp-modern'
+" Git integration
+Plug 'tpope/vim-fugitive'
 
 " All of your Plugins must be added before the following line
 
@@ -129,10 +133,14 @@ set incsearch " Incremental search
 " Coc
 let g:coc_node_path='/usr/bin/node'
 
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 " Tree-sitter
 let g:CommandTPreferredImplementation='lua'
 nnoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
-inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 
 " Airline
 set laststatus=2
@@ -148,14 +156,6 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#show_tabs = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline_powerline_fonts = 1
-
-" C++ highlighting settings
-let g:cpp_attributes_highlight = 1
-" Highlight struct/class member variables (affects both C and C++ files)
-let g:cpp_member_highlight = 1
-" Put all standard C and C++ keywords under Vim's highlight group 'Statement'
-" (affects both C and C++ files)
-let g:cpp_simple_highlight = 1
 
 " ----------------------------------------------------------------------------
 " External tools settings
@@ -214,4 +214,3 @@ map <C-r> :source ~/vim_session <CR>
 
 " Command-T call
 map <bslash>t :CommandT<CR>
-

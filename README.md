@@ -7,7 +7,7 @@ Minimal init.vim for C/C++ development (manual for Debian/Ubuntu-based distribut
 3. ~~Install **xclip/xfce4-clipman** for the system clipboard support~~ Installed by default in Xubuntu Desktop.
 4. Install **luajit**
 5. Install **clangd** (and **clang** if needed): `sudo apt-get install clangd`
-6. Install **nodejs** (required for Command-T)
+6. Install **nodejs** and **npm** (required for Command-T)
 7. Download **wombat256** colorscheme from https://www.vim.org/scripts/script.php?script_id=2465 and copy the scheme file to `~/.config/nvim/colors`
 8. Install **fonts-powerline**
 9. Launch **nvim** and do `:PlugInstall`

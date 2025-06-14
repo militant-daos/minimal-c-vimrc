@@ -4,7 +4,7 @@ Plug 'junegunn/vim-github-dashboard'
 Plug 'vim-scripts/wombat256.vim'
 
 " Files navigation
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'preservim/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'jlanzarotta/bufexplorer'
 
 " Tags
@@ -23,6 +23,10 @@ Plug 'scrooloose/nerdcommenter'
 
 " Search
 Plug 'wincent/command-t'
+
+" Telescope
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 
 " Completion & highlighting
 Plug 'sheerun/vim-polyglot'
@@ -48,7 +52,6 @@ filetype plugin indent on    " required
 " set UTF-8 encoding
 set enc=utf-8
 set fenc=utf-8
-set termencoding=utf-8
 
 " disable vi compatibility (emulation of old bugs)
 set nocompatible
@@ -75,6 +78,8 @@ set textwidth=120
 " turn syntax highlighting on
 set t_Co=256
 syntax on
+highlight Normal ctermbg=NONE
+highlight nonText ctermbg=NONE
 
 " Mouse support
 set mouse=a
@@ -146,8 +151,10 @@ nnoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 set laststatus=2
 
 " Gutentags
+let g:gutentags_enabled = 1
 set statusline+=%{gutentags#statusline()}
 let g:gutentags_cache_dir = '~/.tmp/tags'
+autocmd! User vim-gutentags call gutentags#setup_gutentags()
 
 " vim-airline Settings
 let g:airline#extensions#tabline#enabled = 1
@@ -156,6 +163,12 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#show_tabs = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline_powerline_fonts = 1
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " ----------------------------------------------------------------------------
 " External tools settings
@@ -188,6 +201,8 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 " ----------------------------------------------------------------------------
 " Enhanced keyboard mappings
 "
+
+" BufExplorer (Telescope also may be used)
 nmap <F2> :ToggleBufExplorer<CR>
 
 " NerdTree

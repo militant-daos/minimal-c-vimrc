@@ -69,7 +69,7 @@ if has("autocmd")
   filetype plugin indent on
 endif
 
-set listchars=eol:¬,tab:>·,space:·
+"set listchars=eol:¬,tab:>·,space:·
 set list
 
 " Wrap lines at 120 chars. 80 is somewaht antiquated with nowadays displays.
@@ -166,9 +166,11 @@ let g:airline_powerline_fonts = 1
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fl <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+" Grep string under cursor
+nnoremap <leader>fg :execute 'Telescope live_grep default_text=' . expand('<cword>')<cr>
 
 " ----------------------------------------------------------------------------
 " External tools settings
@@ -177,26 +179,6 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 " set tags=tags;/
 
 " let g:DoxygenToolkit_authorName="Victor Krasnoshchok"
-
-" ----------------------------------------------------------------------------
-" Sidekicks & crutches with thread tape
-
-" The Silver Searcher
-" How-to install: sudo apt-get install silversearcher-ag
-
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
-
-" bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " ----------------------------------------------------------------------------
 " Enhanced keyboard mappings
